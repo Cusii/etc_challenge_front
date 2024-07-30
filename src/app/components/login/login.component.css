@@ -1,0 +1,63 @@
+/* login.component.css */
+
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(120deg, #2980b9, #6dd5fa, #ffffff);
+    background-size: cover;
+  }
+  
+  mat-card {
+    width: 400px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+  
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  mat-form-field.mat-focused .mat-form-field-label {
+    color: #2980b9 !important;
+  }
+  
+  mat-form-field.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #2980b9 !important;
+  }
+  
+  input[matInput] {
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  button {
+    width: 100%;
+    background-color: #2980b9;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #1a73e8;
+  }
+  
+  button:disabled {
+    background-color: #c0c0c0;
+  }
+  h1{
+    text-align: center;
+  }

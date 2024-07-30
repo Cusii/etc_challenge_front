@@ -1,0 +1,123 @@
+/* tasks-board.component.css */
+
+/* Contenedor principal que usa Flexbox para organizar el contenido */
+.task-board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Contenedor del botón "Crear Tarea" */
+.create-task-container {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+button.mat-button.color-primary {
+  color: #ffffff;
+  background-color: #2980b9;
+  border: none;
+}
+
+button.mat-button.color-primary:hover {
+  background-color: #1a73e8;
+}
+
+button.mat-button.color-warn {
+  color: #ffffff;
+  background-color: #e74c3c;
+  border: none;
+}
+
+button.mat-button.color-warn:hover {
+  background-color: #c0392b;
+}
+
+/* Contenedor de las secciones de tareas en fila */
+.task-sections {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Asegura que las secciones se ajusten en pantallas más pequeñas */
+  gap: 20px; /* Espacio entre las secciones */
+  width: 100%;
+}
+
+/* Estilo general para el contenedor de tareas */
+.task-list {
+  flex: 1;
+  min-width: 250px; /* Ancho mínimo para cada sección */
+  max-width: 100%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabecera de cada sección */
+.task-list h2 {
+  text-align: center;
+  color: #2980b9;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Contenedor para las tarjetas de tarea */
+.task-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.task-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+mat-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+mat-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+}
+
+mat-card-header {
+  background-color: #2980b9;
+  color: white;
+  border-radius: 8px 8px 0 0;
+}
+
+mat-card-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+mat-card-subtitle {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+/* Estilo para los botones */
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+button.mat-button {
+  border-radius: 5px;
+  font-size: 0.875rem;
+  padding: 8px 16px;
+  min-width: 80px;
+}
+
+.cdk-drag {
+  cursor: move;
+}

@@ -1,0 +1,69 @@
+<!-- tasks-board.component.html -->
+
+<div class="task-board-container">
+    <!-- Botón para crear tareas -->
+    <div class="create-task-container">
+      <button mat-button color="primary" (click)="openCreateDialog()">Create Task</button>
+    </div>
+  
+    <!-- Contenedor de las secciones de tareas en fila -->
+    <div class="task-sections">
+      <!-- Sección de tareas "Pendientes" -->
+      <div cdkDropList [cdkDropListData]="pendingTasks" (cdkDropListDropped)="onDrop($event, 'pending')" class="task-list" id="pending-list">
+          <h2>Pending</h2>
+          <div class="task-container">
+              <div *ngFor="let task of pendingTasks" cdkDrag [cdkDragData]="task" class="task-card">
+                  <mat-card>
+                      <mat-card-header>
+                          <mat-card-title>{{ task.taskName }}</mat-card-title>
+                      </mat-card-header>
+                      <mat-card-actions>
+                          <mat-card-subtitle>Status: {{ task.status | titlecase }}</mat-card-subtitle>
+                          <button mat-button color="primary" (click)="openEditDialog(task)">Edit</button>
+                          <button mat-button color="warn" (click)="deleteTask(task)">Delete</button>
+                      </mat-card-actions>
+                  </mat-card>
+              </div>
+          </div>
+      </div>
+  
+      <!-- Sección de tareas "En Progreso" -->
+      <div cdkDropList [cdkDropListData]="inProgressTasks" (cdkDropListDropped)="onDrop($event, 'in-progress')" class="task-list" id="in-progress-list">
+          <h2>In Progress</h2>
+          <div class="task-container">
+              <div *ngFor="let task of inProgressTasks" cdkDrag [cdkDragData]="task" class="task-card">
+                  <mat-card>
+                      <mat-card-header>
+                          <mat-card-title>{{ task.taskName }}</mat-card-title>
+                      </mat-card-header>
+                      <mat-card-actions>
+                          <mat-card-subtitle>Status: {{ task.status | titlecase }}</mat-card-subtitle>
+                          <button mat-button color="primary" (click)="openEditDialog(task)">Edit</button>
+                          <button mat-button color="warn" (click)="deleteTask(task)">Delete</button>
+                      </mat-card-actions>
+                  </mat-card>
+              </div>
+          </div>
+      </div>
+  
+      <!-- Sección de tareas "Completadas" -->
+      <div cdkDropList [cdkDropListData]="completedTasks" (cdkDropListDropped)="onDrop($event, 'completed')" class="task-list" id="completed-list">
+          <h2>Completed</h2>
+          <div class="task-container">
+              <div *ngFor="let task of completedTasks" cdkDrag [cdkDragData]="task" class="task-card">
+                  <mat-card>
+                      <mat-card-header>
+                          <mat-card-title>{{ task.taskName }}</mat-card-title>
+                      </mat-card-header>
+                      <mat-card-actions>
+                          <mat-card-subtitle>Status: {{ task.status | titlecase }}</mat-card-subtitle>
+                          <button mat-button color="primary" (click)="openEditDialog(task)">Edit</button>
+                          <button mat-button color="warn" (click)="deleteTask(task)">Delete</button>
+                      </mat-card-actions>
+                  </mat-card>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  
