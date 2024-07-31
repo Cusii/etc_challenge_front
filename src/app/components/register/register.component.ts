@@ -62,6 +62,7 @@ export class RegisterComponent {
       this.userService.register(newUser).subscribe(
         response => {
           console.log('Registration successful', response);
+          this.router.navigate(['/tasks']);
         },
         error => {
           console.error('Registration failed', error);

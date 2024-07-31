@@ -16,23 +16,34 @@
   justify-content: center;
 }
 
-button.mat-button.color-primary {
+/* Estilo para los botones usando Angular Material */
+button.mat-raised-button.color-primary {
   color: #ffffff;
   background-color: #2980b9;
   border: none;
 }
 
-button.mat-button.color-primary:hover {
+button.mat-raised-button.color-primary:hover {
   background-color: #1a73e8;
 }
 
-button.mat-button.color-warn {
+button.mat-raised-button.color-accent {
+  color: #ffffff;
+  background-color: #ff4081;
+  border: none;
+}
+
+button.mat-raised-button.color-accent:hover {
+  background-color: #f50057;
+}
+
+button.mat-raised-button.color-warn {
   color: #ffffff;
   background-color: #e74c3c;
   border: none;
 }
 
-button.mat-button.color-warn:hover {
+button.mat-raised-button.color-warn:hover {
   background-color: #c0392b;
 }
 
@@ -40,15 +51,15 @@ button.mat-button.color-warn:hover {
 .task-sections {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap; /* Asegura que las secciones se ajusten en pantallas más pequeñas */
-  gap: 20px; /* Espacio entre las secciones */
+  flex-wrap: wrap;
+  gap: 20px;
   width: 100%;
 }
 
 /* Estilo general para el contenedor de tareas */
 .task-list {
   flex: 1;
-  min-width: 250px; /* Ancho mínimo para cada sección */
+  min-width: 250px;
   max-width: 100%;
   padding: 20px;
   background-color: #f9f9f9;
@@ -105,7 +116,7 @@ mat-card-subtitle {
   color: #ffffff;
 }
 
-/* Estilo para los botones */
+/* Estilo para los botones dentro del mat-card */
 mat-card-actions {
   display: flex;
   justify-content: space-between;
@@ -120,4 +131,10 @@ button.mat-button {
 
 .cdk-drag {
   cursor: move;
+}
+
+/* Estilo para las imágenes dentro del mat-card */
+img {
+  width: 100%;
+  height: auto; /* Cambiado a auto para mantener la proporción de la imagen */
 }

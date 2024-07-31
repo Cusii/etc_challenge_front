@@ -8,6 +8,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../services/task.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-task-item',
@@ -19,7 +20,8 @@ import { TaskService } from '../../services/task.service';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatButtonModule
   ],
   templateUrl: './task-item.component.html',
   styleUrl: './task-item.component.css'
@@ -27,19 +29,20 @@ import { TaskService } from '../../services/task.service';
 export class TaskItemComponent {
   taskForm: FormGroup;
   isEditing: boolean;
-  imageSrc : "/imagen" | undefined;
-  
+  imageSrc: "/imagen" | undefined;
+
   constructor(
     private fb: FormBuilder,
     private taskService: TaskService,
     private dialogRef: MatDialogRef<TaskItemComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.isEditing = !!data.task; // Determina si estamos en modo edición o creación
+    this.isEditing = !!data.task; 
 
     this.taskForm = this.fb.group({
+      taskId: [this.isEditing ? data.task.taskId : ''],
       taskName: [this.isEditing ? data.task.taskName : '', Validators.required],
-      description: [this.isEditing ? data.task.description : '', Validators.required],
+      description: [this.isEditing ? data.task.description : ''],
       status: [this.isEditing ? data.task.status : 'pending', Validators.required],
       image: [this.isEditing ? data.task.image : '']
     });
@@ -50,7 +53,8 @@ export class TaskItemComponent {
     if (this.taskForm.valid) {
       const taskData = this.taskForm.value;
       if (this.isEditing) {
-        this.taskService.updateTask(this.data.tasktaskId, taskData).subscribe(
+        
+        this.taskService.updateTask(taskData.taskId, taskData).subscribe(
           () => {
             this.dialogRef.close(taskData);
           },

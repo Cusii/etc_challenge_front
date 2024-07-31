@@ -6,11 +6,18 @@ import { CommonModule } from '@angular/common';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { MatDialog } from '@angular/material/dialog';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatButtonModule} from '@angular/material/button';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-tasks-board',
   standalone: true,
-  imports: [MatCardModule, CommonModule, DragDropModule],
+  imports: [MatCardModule, CommonModule, DragDropModule, MatChipsModule, MatProgressBarModule, MatButtonModule, MatExpansionModule],
   templateUrl: './tasks-board.component.html',
   styleUrls: ['./tasks-board.component.css']
 })
@@ -22,13 +29,12 @@ export class TasksBoardComponent implements OnInit {
   inProgressTasks: Task[] = [];
   completedTasks: Task[] = [];
 
-  constructor(private taskService: TaskService, private cd: ChangeDetectorRef, private dialog: MatDialog) { }
+  constructor(private taskService: TaskService, private cd: ChangeDetectorRef, private dialog: MatDialog, private router: Router, private authservice: AuthService) { }
 
   ngOnInit(): void {
     this.loadTasks();
   }
 
-  // Método para cargar y clasificar las tareas
   loadTasks(): void {
     this.taskService.readTasks().subscribe(
       (tasks) => {
@@ -47,12 +53,9 @@ export class TasksBoardComponent implements OnInit {
     if (event.previousContainer !== event.container) {
       const task = event.item.data as Task;
       task.status = newStatus;
-      // Actualizar el estado de la tarea
       this.taskService.updateTask(task.taskId, task).subscribe(
         () => {
-          // Eliminar la tarea de la lista anterior
           event.previousContainer.data.splice(event.previousIndex, 1);
-          // Añadir la tarea a la nueva lista
           event.container.data.push(task);
         },
         error => {
@@ -70,7 +73,7 @@ export class TasksBoardComponent implements OnInit {
   openEditDialog(task: Task): void {
     const dialogRef = this.dialog.open(TaskItemComponent, {
       width: '400px',
-      data: { task }  // Pasamos la tarea al componente del diálogo
+      data: { task }  
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -82,7 +85,7 @@ export class TasksBoardComponent implements OnInit {
 
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(TaskItemComponent, {
-      data: { task: null }, // No pasa datos para la creación de una nueva tarea
+      data: { task: null },
       width: '400px'
     });
 
@@ -96,13 +99,17 @@ export class TasksBoardComponent implements OnInit {
   deleteTask(task: Task): void {
     this.taskService.deleteTask(task.taskId).subscribe(
       () => {
-        // Elimina la tarea de la lista
         this.removeTaskFromList(task);
       },
       error => {
         console.error('Error deleting task:', error);
       }
     );
+  }
+
+  logout() {
+    this.authservice.clearTokens();
+    this.router.navigate(['/login']);
   }
 
   private removeTaskFromList(task: Task): void {
