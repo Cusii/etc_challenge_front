@@ -37,7 +37,7 @@ export class TaskItemComponent {
     private dialogRef: MatDialogRef<TaskItemComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.isEditing = !!data.task; 
+    this.isEditing = !!data.task;
 
     this.taskForm = this.fb.group({
       taskId: [this.isEditing ? data.task.taskId : ''],
@@ -53,13 +53,14 @@ export class TaskItemComponent {
     if (this.taskForm.valid) {
       const taskData = this.taskForm.value;
       if (this.isEditing) {
-        
+
         this.taskService.updateTask(taskData.taskId, taskData).subscribe(
           () => {
             this.dialogRef.close(taskData);
           },
           error => {
             console.error('Error updating task:', error);
+            
           }
         );
       } else {

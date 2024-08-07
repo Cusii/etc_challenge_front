@@ -4,7 +4,7 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserModule } from '@angular/platform-browser';
-import { AuthInterceptor } from './services/auth-interceptor'; // Ajusta esta ruta según tu estructura de proyecto
+import { AuthInterceptor } from './settings/auth-interceptor'; // Ajusta esta ruta según tu estructura de proyecto
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -28,6 +28,9 @@
           <mat-option value="Male">Male</mat-option>
           <mat-option value="Female">Female</mat-option>
         </mat-select>
+        <mat-error *ngIf="registerForm.get('gender')?.hasError('required') && registerForm.get('gender')?.touched">
+          Se requiere genero.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
@@ -37,11 +40,12 @@
           Se requiere contraseña.
         </mat-error>
         <mat-error *ngIf="registerForm.get('password')?.hasError('pattern') && registerForm.get('password')?.touched">
-          La contraseña debe tener entre 8 y 12 caracteres, incluir al menos una letra mayúscula, una letra minúscula y un número, y no contener caracteres especiales.
+          La contraseña debe tener entre 8 y 12 caracteres, incluir al menos una letra mayúscula, una letra minúscula y
+          un número, y no contener caracteres especiales.
         </mat-error>
       </mat-form-field>
 
-      <button mat-flat-button type="submit" [disabled]="registerForm.invalid">Register</button>
+      <button type="submit" [disabled]="registerForm.invalid">Register</button>
       <button mat-flat-button type="button" (click)="gotToLogin()">Go to Login</button>
     </form>
   </mat-card-content>

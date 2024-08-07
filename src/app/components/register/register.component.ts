@@ -11,9 +11,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
-
-
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -44,7 +41,7 @@ export class RegisterComponent {
       userName: ['', Validators.required],
       phone: [''],
       age: [''],
-      gender: [''],
+      gender: ['', Validators.required],
       password: [
         '',
         [
@@ -67,9 +64,7 @@ export class RegisterComponent {
         error => {
           console.error('Registration failed', error);
           if (error.status === 409) {
-            alert('El nombre de usuario ya está en uso. Por favor, elige otro.');
-          } else {
-            alert('Error al registrar. Por favor, intenta nuevamente.');
+            alert(error.error)
           }
         }
       );
