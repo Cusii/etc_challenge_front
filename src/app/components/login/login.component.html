@@ -13,8 +13,9 @@
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Password</mat-label>
         <input [type]="hide ? 'password' : 'text'" formControlName="password" matInput required placeholder="Password">
-        <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()"
+          [attr.aria-label]="hide ? 'Show password' : 'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         </button>
         <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
           Se requiere contraseña.
@@ -22,7 +23,7 @@
       </mat-form-field>
 
       <button type="submit" [disabled]="loginForm.invalid">Login</button>
-      <button mat-flat-button type="button" (click)="goToRegister()">Go to Register</button>
+      <button mat-flat-button (click)="goToRegister()">Go to Register</button>
     </form>
   </mat-card-content>
 </mat-card>

@@ -20,11 +20,8 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
-    "angular2-text-mask": "^9.0.0",
-    "ng2-mask": "^1.1.1",
-    "ngx-mask": "^18.0.0",
+    "imask": "^7.6.1",
     "rxjs": "~7.8.0",
-    "text-mask-addons": "^3.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },

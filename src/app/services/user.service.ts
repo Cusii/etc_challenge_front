@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { appsettings } from '../components/settings/app-settings';
 import { Observable, tap } from 'rxjs';
 import { AuthService } from './auth.service';
+import { UserRegister } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -32,4 +33,9 @@ export class UserService {
       })
     );
   }
+
+  readUser(userId: number): Observable<UserRegister> {
+    return this.http.get<UserRegister>(`${this.userBasePath}${userId}`);
+  }
+  
 }

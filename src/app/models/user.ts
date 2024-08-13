@@ -4,9 +4,9 @@ export interface UserLogin {
 }
 
 export interface UserRegister {
+  userId: number;
   userName: string;
   phone: string;
   age: string;
   gender: string;
-  password: string;
 }

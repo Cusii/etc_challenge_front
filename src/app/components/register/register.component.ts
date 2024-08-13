@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { MatCardModule } from '@angular/material/card';
@@ -9,7 +9,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
+import IMask from 'imask';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-register',
@@ -24,13 +27,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
+    MatIconModule,  // Asegúrate de importar MatIconModule aquí
+
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements AfterViewInit {
   registerForm: FormGroup;
   ageOptions = ['18-24', '25-34', '35-44', '45-54', '55+'];
+
+  @ViewChild('phoneInput') phoneInput!: ElementRef;
+  hide = true;  // Variable para controlar la visibilidad de la contraseña
 
   constructor(
     private fb: FormBuilder,
@@ -75,5 +83,15 @@ export class RegisterComponent {
 
   gotToLogin(): void {
     this.router.navigate(['/user/login']);
+  }
+
+  ngAfterViewInit() {
+    const phoneMask = IMask(this.phoneInput.nativeElement, {
+      mask: '(000) 000-0000'
+    });
+  }
+
+  togglePasswordVisibility(): void {
+    this.hide = !this.hide;
   }
 }
